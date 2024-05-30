@@ -206,7 +206,6 @@ function solution(hp) {
     answer += Math.floor(hp / ant3);
     hp = hp % ant3;
     answer += hp;
-
     
     return answer;
 }
