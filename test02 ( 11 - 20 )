@@ -1,0 +1,212 @@
+/*
+문제11) 양꼬치
+머쓱이네 양꼬치 가게는 10인분을 먹으면 음료수 하나를 서비스로 줍니다. 
+양꼬치는 1인분에 12,000원, 음료수는 2,000원입니다. 
+정수 n과 k가 매개변수로 주어졌을 때, 양꼬치 n인분과 음료수 k개를 먹었다면 총얼마를 지불해야 하는지 
+return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+0 < n < 1,000
+n / 10 ≤ k < 1,000
+서비스로 받은 음료수는 모두 마십니다.
+*/
+
+function solution(n, k) {
+    
+    let food = n * 12000; 
+    let freedrink = Math.floor(n/10);
+    let drink = k - freedrink;
+    
+    return food + drink * 2000;
+}
+
+/*
+문제12) 두 수의 나눗셈
+정수 num1과 num2가 매개변수로 주어질 때, num1을 num2로 나눈 값에 1,000을 곱한 후 정수 부분을 return 하도록 soltuion 함수를 완성해주세요.
+
+* 제한사항 *
+0 ≤ num1 ≤ 100
+0 ≤ num2 ≤ 100
+*/
+
+function solution(num1, num2) {
+    var answer = Math.floor(num1/num2 * 1000);
+    return answer;
+}
+
+/*
+문제13) 중복된 숫자 개수
+정수가 담긴 배열 array와 정수 n이 매개변수로 주어질 때, array에 n이 몇 개 있는 지를 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+1 ≤ array의 길이 ≤ 100
+0 ≤ array의 원소 ≤ 1,000
+0 ≤ n ≤ 1,000
+*/
+
+function solution(array, n) {
+    var answer = 0;  
+
+    for(let i = 0; i < array.length; i++) {
+        if(array[i] == n){
+            answer++;
+        }
+    }
+
+    return answer;
+}
+
+/*
+문제14) 머쓱이보다 키 큰 사람
+머쓱이는 학교에서 키 순으로 줄을 설 때 몇 번째로 서야 하는지 궁금해졌습니다. 
+머쓱이네 반 친구들의 키가 담긴 정수 배열 array와 머쓱이의 키 height가 매개변수로 주어질 때, 
+머쓱이보다 키 큰 사람 수를 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+1 ≤ array의 길이 ≤ 100
+1 ≤ height ≤ 200
+1 ≤ array의 원소 ≤ 200
+*/
+
+function solution(array, height) {
+    let answer = 0;
+      
+    for(let i = 0; i < array.length; i++){
+        if(array[i] > height){
+            answer++;
+        }
+    }
+        return answer;
+}
+
+/*
+문제15) 중앙값 구하기
+중앙값은 어떤 주어진 값들을 크기의 순서대로 정렬했을 때 가장 중앙에 위치하는 값을 의미합니다. 
+예를 들어 1, 2, 7, 10, 11의 중앙값은 7입니다. 
+정수 배열 array가 매개변수로 주어질 때, 중앙값을 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+array의 길이는 홀수입니다.
+0 < array의 길이 < 100
+-1,000 < array의 원소 < 1,000
+*/
+
+function solution(array) {
+    array.sort((a,b) => a-b);
+    
+    let answer = array[(array.length-1)/2];
+    
+    return answer;
+}
+
+/*
+문제16) 짝수는 싫어요
+정수 n이 매개변수로 주어질 때, n 이하의 홀수가 오름차순으로 담긴 배열을 return하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+1 ≤ n ≤ 100
+*/
+
+function solution(n) {
+    let answer = [];
+    
+  for(let i = 1; i <= n; i += 2){
+     answer.push(i);
+  }
+    return answer;
+}
+
+/*
+문제17) 피자 나눠먹기(1)
+머쓱이네 피자가게는 피자를 일곱 조각으로 잘라 줍니다. 피자를 나눠먹을 사람의 수 n이 주어질 때, 
+모든 사람이 피자를 한 조각 이상 먹기 위해 필요한 피자의 수를 return 하는 solution 함수를 완성해보세요.
+
+* 제한사항 *
+1 ≤ n ≤ 100
+*/
+
+function solution(n) {
+    
+    let pizza = n % 7 == 0 ? Math.floor(n / 7) : Math.floor(n / 7) + 1;
+    
+    return pizza;
+}
+
+/*
+문제18) 옷가게 할인 받기
+머쓱이네 옷가게는 10만 원 이상 사면 5%, 30만 원 이상 사면 10%, 50만 원 이상 사면 20%를 할인해줍니다.
+구매한 옷의 가격 price가 주어질 때, 지불해야 할 금액을 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+10 ≤ price ≤ 1,000,000
+price는 10원 단위로(1의 자리가 0) 주어집니다.
+소수점 이하를 버린 정수를 return합니다.
+*/
+
+function solution(price) {
+    
+    if(500000 <= price){
+       return Math.floor(price * 0.8);
+    } 
+    if(300000 <= price && price < 500000){
+       return Math.floor(price * 0.9);
+    } 
+    if(100000 <= price && price < 300000){
+        return Math.floor(price * 0.95);
+    } 
+    if(0 <= price && price <= 100000){
+      return price;
+    } 
+  }
+
+/*
+문제19) 아이스 아메리카노
+머쓱이는 추운 날에도 아이스 아메리카노만 마십니다. 아이스 아메리카노는 한잔에 5,500원입니다. 
+머쓱이가 가지고 있는 돈 money가 매개변수로 주어질 때, 머쓱이가 최대로 마실 수 있는 아메리카노의 잔 수와 남는 돈을 
+순서대로 담은 배열을 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+0 < money ≤ 1,000,000
+*/
+
+function solution(money) {
+    var answer = [];
+    let coffee = 5500;
+    
+    answer.push(Math.floor(money / coffee));
+    answer.push(Math.floor(money % coffee));
+
+    return answer;
+}
+
+/*
+문제20) 개미군단
+개미 군단이 사냥을 나가려고 합니다. 개미군단은 사냥감의 체력에 딱 맞는 병력을 데리고 나가려고 합니다. 
+장군개미는 5의 공격력을, 병정개미는 3의 공격력을 일개미는 1의 공격력을 가지고 있습니다. 
+예를 들어 체력 23의 여치를 사냥하려고 할 때, 일개미 23마리를 데리고 가도 되지만, 
+장군개미 네 마리와 병정개미 한 마리를 데리고 간다면 더 적은 병력으로 사냥할 수 있습니다. 
+사냥감의 체력 hp가 매개변수로 주어질 때, 사냥감의 체력에 딱 맞게 최소한의 병력을 구성하려면 
+몇 마리의 개미가 필요한지를 return하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+hp는 자연수입니다.
+0 ≤ hp ≤ 1000
+
+*/
+
+function solution(hp) {
+    var answer = 0;
+    // 일개미 1 / 병정개미 3 / 장군개미 5
+    let ant5 = 5;
+    let ant3 = 3;
+    let ant1 = 1;
+    
+    answer += Math.floor(hp / ant5);
+    hp = hp % ant5;
+    answer += Math.floor(hp / ant3);
+    hp = hp % ant3;
+    answer += hp;
+
+    
+    return answer;
+}
