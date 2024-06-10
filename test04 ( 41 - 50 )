@@ -1,0 +1,241 @@
+/*
+문제41) 피자 나눠 먹기(3)
+머쓱이네 피자가게는 피자를 두 조각에서 열 조각까지 원하는 조각 수로 잘라줍니다. 
+피자 조각 수 slice와 피자를 먹는 사람의 수 n이 매개변수로 주어질 때, 
+n명의 사람이 최소 한 조각 이상 피자를 먹으려면 최소 몇 판의 피자를 시켜야 하는지를 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+2 ≤ slice ≤ 10
+1 ≤ n ≤ 100
+*/
+
+function solution(slice, n) {
+    var pizza = 1;
+       
+    if(n <= slice) {
+        return pizza;
+    } else if(n > slice) {
+        while( slice * pizza < n) {
+            pizza++;
+        }    
+    } return pizza;
+  }
+
+
+/*
+문제42) 세균 증식
+어떤 세균은 1시간에 두배만큼 증식한다고 합니다. 
+처음 세균의 마리수 n과 경과한 시간 t가 매개변수로 주어질 때 t시간 후 세균의 수를 return하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+1 ≤ n ≤ 10
+1 ≤ t ≤ 15
+*/
+
+function solution(n, t) {
+    
+    while(t > 0){
+       n = n * 2;
+       t--;
+    }
+
+    return n;
+}
+
+/*
+문제43) 제곱수 판별하기
+어떤 자연수를 제곱했을 때 나오는 정수를 제곱수라고 합니다. 
+정수 n이 매개변수로 주어질 때, n이 제곱수라면 1을 아니라면 2를 return하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+1 ≤ n ≤ 1,000,000
+*/
+
+function solution(n) {
+    
+    if(Math.sqrt(n) % 1 === 0) {
+       return 1;
+    }
+   return 2;
+}
+
+/*
+문제44) 외계 행성의 나이
+우주여행을 하던 머쓱이는 엔진 고장으로 PROGRAMMERS-962 행성에 불시착하게 됐습니다. 
+입국심사에서 나이를 말해야 하는데, PROGRAMMERS-962 행성에서는 나이를 알파벳으로 말하고 있습니다. 
+a는 0, b는 1, c는 2, ..., j는 9입니다. 예를 들어 23살은 cd, 51살은 fb로 표현합니다. 
+나이 age가 매개변수로 주어질 때 PROGRAMMER-962식 나이를 return하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+age는 자연수입니다.
+age ≤ 1,000
+PROGRAMMERS-962 행성은 알파벳 소문자만 사용합니다.
+*/
+function solution(age) {
+    var answer = '';
+
+    var alphabet = ['a','b','c','d','e','f','g','h','i','j'];
+
+    let first = Math.floor( age / 1000);
+    let second = Math.floor( ( age % 1000 ) / 100 );
+    let third = Math.floor( ( ( age % 1000 ) % 100 ) / 10 );
+    let last = ( ( age % 1000) % 100 ) % 10;
+    
+    if(first == 0){
+        if(second == 0){
+            if(third == 0){
+                answer += alphabet[last];
+            } else {
+                answer += alphabet[third];
+                answer += alphabet[last];
+            }
+        } else {
+            answer += alphabet[second];
+            answer += alphabet[third];
+            answer += alphabet[last];
+        }
+    } else {
+        answer += alphabet[first];
+        answer += alphabet[second];
+        answer += alphabet[third];
+        answer += alphabet[last];
+    }
+    return answer;
+}
+
+/*
+문제45) 주사위의 개수
+머쓱이는 직육면체 모양의 상자를 하나 가지고 있는데 이 상자에 정육면체 모양의 주사위를 최대한 많이 채우고 싶습니다. 
+상자의 가로, 세로, 높이가 저장되어있는 배열 box와 주사위 모서리의 길이 정수 n이 매개변수로 주어졌을 때, 
+상자에 들어갈 수 있는 주사위의 최대 개수를 return 하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+box의 길이는 3입니다.
+box[0] = 상자의 가로 길이
+box[1] = 상자의 세로 길이
+box[2] = 상자의 높이 길이
+1 ≤ box의 원소 ≤ 100
+1 ≤ n ≤ 50
+n ≤ box의 원소
+주사위는 상자와 평행하게 넣습니다.
+*/
+function solution(box, n) {
+    var answer = 0;
+    let garo = Math.floor( box[0] / n );
+    let sero = Math.floor( box[1] / n );
+    let nopi = Math.floor( box[2] / n );
+    
+    answer = garo * sero * nopi;
+
+    return answer;
+}
+
+/*
+문제46) 약수 구하기
+정수 n이 매개변수로 주어질 때, n의 약수를 오름차순으로 담은 배열을 return하도록 solution 함수를 완성해주세요.
+
+* 제한사항 *
+1 ≤ n ≤ 10,000
+*/
+function solution(n) {
+    var answer = [];
+    let i = 1;
+    
+    while(i <= n){
+        if( n % i == 0 ){
+            answer.push(i);
+        } 
+        i++;
+    }
+    return answer;
+}
+
+/*
+문제47) 숫자찾기
+정수 num과 k가 매개변수로 주어질 때, 
+num을 이루는 숫자 중에 k가 있으면 num의 그 숫자가 있는 자리 수를 return하고 없으면 -1을 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+0 < num < 1,000,000
+0 ≤ k < 10
+num에 k가 여러 개 있으면 가장 처음 나타나는 자리를 return 합니다.
+*/
+function solution(num, k) {
+    var answer = 0;
+    k = k.toString();
+    let numarr = num.toString().split('');
+
+    for(var i = 0; i < numarr.length; i++){
+        if( k == numarr[i] ){
+            answer = i+1;
+            return answer;
+        }
+    } 
+
+    if(answer == 0) {
+        return -1;
+    }
+}
+
+/*
+문제48) 문자열 정렬하기(2)
+영어 대소문자로 이루어진 문자열 my_string이 매개변수로 주어질 때, 
+my_string을 모두 소문자로 바꾸고 알파벳 순서대로 정렬한 문자열을 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+0 < my_string 길이 < 100
+*/
+function solution(my_string) {
+    var answer = '';
+    answer = my_string.toLowerCase().split('').sort().join('');
+    return answer;
+}
+
+/*
+문제49) 문자열 정렬하기(1)
+문자열 my_string이 매개변수로 주어질 때, 
+my_string 안에 있는 숫자만 골라 오름차순 정렬한 리스트를 return 하도록 solution 함수를 작성해보세요.
+
+* 제한사항 *
+1 ≤ my_string의 길이 ≤ 100
+my_string에는 숫자가 한 개 이상 포함되어 있습니다.
+my_string은 영어 소문자 또는 0부터 9까지의 숫자로 이루어져 있습니다. 
+*/
+function solution(my_string) {
+    var answer = [];
+
+    var num = ['0','1','2','3','4','5','6','7','8','9'];
+
+    my_string = my_string.split('');
+
+    for(let i = 0; i < my_string.length; i++){
+        if( num.includes( my_string[i] ) ){
+            answer.push( parseInt(my_string[i]) );
+        }
+    }
+    answer.sort();
+
+    return answer;
+}
+
+/*
+문제50) 369게임
+머쓱이는 친구들과 369게임을 하고 있습니다. 
+369게임은 1부터 숫자를 하나씩 대며 3, 6, 9가 들어가는 숫자는 숫자 대신 3, 6, 9의 개수만큼 박수를 치는 게임입니다. 
+머쓱이가 말해야하는 숫자 order가 매개변수로 주어질 때, 머쓱이가 쳐야할 박수 횟수를 return 하도록 solution 함수를 완성해보세요.
+
+* 제한사항 *
+1 ≤ order ≤ 1,000,000
+*/
+function solution(order) {
+    var answer = 0;
+    let clap = ['3','6','9'];
+
+    order = order.toString().split('');
+    for(let i = 0; i < order.length; i++){
+        if( clap.includes(order[i]) ){
+            answer++;            
+        }
+    }
+    return answer;
+}
